@@ -1,3 +1,14 @@
 <%- include("partials/header.ejs") %>
-<p> hey </p>
+<form action="/submit" method="post">
+  <input type="text" name="pokemonName" placeholder="Search for Pokémon" required>
+  <button type="submit">Search</button>
+</form>
+
+<% if (locals.images) { %>
+  <div>
+    <% images.forEach(image => { %>
+      <img src= "<%= image %>">
+    <% }) %>
+  </div>
+<% } %>
 <%- include("partials/footer.ejs") %>
