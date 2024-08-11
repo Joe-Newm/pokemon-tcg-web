@@ -28,6 +28,7 @@ app.post("/submit", async (req, res) => {
       });
       const pokedata = result.data.data;
       images = pokedata.map((card) => card.images.small);
+      console.log(images);
     }
     res.render("index.ejs", { images });
   } catch (error) {

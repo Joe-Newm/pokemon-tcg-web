@@ -1,14 +1,20 @@
 <%- include("partials/header.ejs") %>
-<form action="/submit" method="post">
-  <input type="text" name="pokemonName" placeholder="Search for Pokémon" required>
-  <button type="submit">Search</button>
-</form>
+<div id="search">
+  <form action="/submit" method="post">
+    <input type="text" name="pokemonName" placeholder="Search for Pokémon" required>
+    <button type="submit">Search</button>
+  </form>
+</div>
 
 <% if (locals.images) { %>
-  <div>
-    <% images.forEach(image => { %>
-      <img src= "<%= image %>">
-    <% }) %>
+  
+    <div class="main-card-container">
+      <% images.forEach(image => { %>
+        <div class="card-container">
+        <img src= "<%= image %>">
+        </div>
+      <% }) %>
+    </div>
   </div>
 <% } %>
 <%- include("partials/footer.ejs") %>
