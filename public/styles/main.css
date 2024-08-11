@@ -68,3 +68,23 @@ button {
     color: white;
     border: none;
 }
+
+
+#suggestions {
+    position: absolute;
+    background-color: white;
+    
+    max-height: 150px;
+    overflow-y: auto;
+    width: 400px;
+    z-index: 1000;
+  }
+  
+  .suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f0f0f0;
+  }

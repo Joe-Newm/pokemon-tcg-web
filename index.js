@@ -21,28 +21,67 @@ app.post("/submit", async (req, res) => {
   let cards = [];
   try {
     if (pokemonName) {
-      const result = await axios.get(`${API_URL}?q=name:${pokemonName}`, {
+      const result = await axios.get(`${API_URL}?q=name:${pokemonName}*`, {
         headers: {
           "X-Api-Key": apiKey,
         },
       });
+
       const pokedata = result.data.data;
-      cards = pokedata.map((card) => ({
-        image: card.images.small,
-        name: card.name,
-        number: card.number,
-        rarity: card.rarity,
-        hp: card.hp,
-        //type: card.types.join(", "), // Joining in case of multiple types
-        set: card.set.name,
-        artist: card.artist,
-      }));
-      console.log(cards);
+
+      // Log the prices to see their structure
+      // pokedata.forEach(card => {
+      //   console.log("TCGPlayer Prices:", card.tcgplayer.prices);
+      //   console.log("Cardmarket Prices:", card.cardmarket.prices);
+      // });
+
+      cards = pokedata.map((card) => {
+        // Access prices within tcgplayer and cardmarket
+        const cardmarketPrices = card.cardmarket?.prices || {};
+
+        return {
+          image: card.images.small,
+          name: card.name,
+          number: card.number,
+          rarity: card.rarity,
+          hp: card.hp,
+          set: card.set.name,
+          artist: card.artist,
+          // Adjust according to the actual structure of prices
+          // market: tcgplayerPrices.normal ? tcgplayerPrices.normal.market : "N/A",
+          cardmarketPrice: cardmarketPrices.averageSellPrice || "N/A",
+        };
+      });
+
+      // console.log(cards); 
     }
     res.render("index.ejs", { cards });
   } catch (error) {
     console.error("Error fetching data from API:", error.message);
     res.status(500).send("Something went wrong!");
+  }
+});
+
+// auto complete functionality for search bar
+app.get('/autocomplete', async (req, res) => {
+  const query = req.query.q;
+  const maxSuggestions = 10;
+  let suggestions = [];
+
+  try {
+    const response = await axios.get(`${API_URL}?q=name:${query}*`, {
+      headers: { 'X-Api-Key': apiKey }
+    });
+
+    suggestions = response.data.data.map(card => card.name).slice(0, maxSuggestions);
+
+    // Deduplicate suggestions
+    const uniqueSuggestions = Array.from(new Set(suggestions));
+
+    res.json(uniqueSuggestions);
+  } catch (error) {
+    console.error('Error fetching data from API:', error.message);
+    res.status(500).send('Something went wrong!');
   }
 });
 
