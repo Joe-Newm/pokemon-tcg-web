@@ -1,6 +1,7 @@
 import express from "express";
 import axios from "axios";
 import dotenv from "dotenv";
+import fs from "fs";
 
 const app = express();
 const port = 3000;
@@ -8,6 +9,7 @@ const API_URL = "https://api.pokemontcg.io/v2/cards";
 
 dotenv.config();
 const apiKey = process.env.API_KEY;
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -60,6 +62,48 @@ app.post("/submit", async (req, res) => {
     console.error("Error fetching data from API:", error.message);
     res.status(500).send("Something went wrong!");
   }
+});
+
+// Route to fetch all Pokémon card names
+// app.get('/fetch-card-names', async (req, res) => {
+//   let allCardNames = [];
+//   let page = 1;
+
+//   try {
+//     while (true) {
+//       const response = await axios.get(`${API_URL}?page=${page}&pageSize=${250}`, {
+//         headers: { 'X-Api-Key': apiKey }
+//       });
+
+//       const cardNames = response.data.data.map(card => card.name);
+//       allCardNames = allCardNames.concat(cardNames);
+
+//       // Break if the number of cards fetched is less than PAGE_SIZE (end of results)
+//       if (response.data.data.length < 250) {
+//         break;
+//       }
+
+//       page++;
+//       await delay(1000); // Delay to handle rate limits
+//     }
+
+//     fs.writeFileSync('card-names.json', JSON.stringify(allCardNames, null, 2));
+//     res.send('All card names fetched and saved.');
+//   } catch (error) {
+//     console.error('Error fetching card names:', error.message);
+//     res.status(500).send('Something went wrong!');
+//   }
+// });
+
+app.get('/card-names', (req, res) => {
+  fs.readFile('card-names.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading card names file:', err);
+      res.status(500).send('Error loading card names');
+      return;
+    }
+    res.json(JSON.parse(data));
+  });
 });
 
 // auto complete functionality for search bar
