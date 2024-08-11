@@ -30,6 +30,7 @@ app.post("/submit", async (req, res) => {
       cards = pokedata.map((card) => ({
         image: card.images.small,
         name: card.name,
+        number: card.number,
         rarity: card.rarity,
         hp: card.hp,
         //type: card.types.join(", "), // Joining in case of multiple types
