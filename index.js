@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
 
 app.post("/submit", async (req, res) => {
   const pokemonName = req.body.pokemonName;
-  let images = [];
+  let cards = [];
   try {
     if (pokemonName) {
       const result = await axios.get(`${API_URL}?q=name:${pokemonName}`, {
@@ -27,10 +27,18 @@ app.post("/submit", async (req, res) => {
         },
       });
       const pokedata = result.data.data;
-      images = pokedata.map((card) => card.images.small);
-      console.log(images);
+      cards = pokedata.map((card) => ({
+        image: card.images.small,
+        name: card.name,
+        rarity: card.rarity,
+        hp: card.hp,
+        //type: card.types.join(", "), // Joining in case of multiple types
+        set: card.set.name,
+        artist: card.artist,
+      }));
+      console.log(cards);
     }
-    res.render("index.ejs", { images });
+    res.render("index.ejs", { cards });
   } catch (error) {
     console.error("Error fetching data from API:", error.message);
     res.status(500).send("Something went wrong!");

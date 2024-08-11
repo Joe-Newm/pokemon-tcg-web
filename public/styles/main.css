@@ -23,10 +23,16 @@ body {
 }
 
 .card-container {
+    display: flex;
     background-color: white;
     border-radius: 20px;
     padding: 15px;
     width: 420px;
+    gap: 20px;
+}
+.card-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .card-container img {

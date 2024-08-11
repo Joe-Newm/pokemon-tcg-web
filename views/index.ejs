@@ -6,12 +6,20 @@
   </form>
 </div>
 
-<% if (locals.images) { %>
+<% if (locals.cards) { %>
   
     <div class="main-card-container">
-      <% images.forEach(image => { %>
+      <% cards.forEach(card => { %>
         <div class="card-container">
-        <img src= "<%= image %>">
+        <img src= "<%= card.image %>">
+        <div class="card-info">
+          <p><b>Name:</b> <%= card.name %></p>
+          <p><b>Rarity:</b> <%= card.rarity %></p>
+          <p><b>HP:</b> <%= card.hp %></p>
+          <!-- <p>Type: <%= card.type %></p> -->
+          <p><b>Set:</b> <%= card.set %></p>
+          <p><b>Artist:</b> <%= card.artist %></p>
+        </div>
         </div>
       <% }) %>
     </div>
