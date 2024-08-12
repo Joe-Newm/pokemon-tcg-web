@@ -13,6 +13,16 @@ body {
     background-color: #ecebeb;
 }
 
+nav {
+    display: flex;
+    height: 80px;
+    background-color: #3b4cca;
+}
+#logo {
+    width: 150px;
+    height: auto;
+}
+
 
 .main-card-container {
     display: flex;
@@ -61,11 +71,11 @@ input {
     padding-left: 10px;
 }
 button {
-    background-color: rgb(7, 160, 89);
+    background-color: #3b4cca;
     height: 40px;
     width: 100px;
     border-radius: 5px;
-    color: white;
+    color:white;
     border: none;
 }
 
@@ -74,7 +84,7 @@ button {
     position: absolute;
     background-color: white;
     
-    max-height: 150px;
+    max-height: 200px;
     overflow-y: auto;
     width: 400px;
     z-index: 1000;
