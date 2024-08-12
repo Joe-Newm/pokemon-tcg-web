@@ -34,14 +34,13 @@
   </div>
 
   <form action="/submit" method="post" class="pagination-form">
-    <!-- Hidden field to preserve pokemonName -->
     <input type="hidden" name="pokemonName" value="<%= pokemonName %>">
     
     <% if (page > 1) { %>
       <button type="submit" name="page" value="<%= page - 1 %>" class="pagination-button">Previous</button>
     <% } %>
   
-    <% for (let i = 1; i <= totalPages; i++) { %>
+    <% for (let i = startPage; i <= endPage; i++) { %>
       <button type="submit" name="page" value="<%= i %>" class="pagination-num <%= i === page ? 'active' : '' %>"><%= i %></button>
     <% } %>
   

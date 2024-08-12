@@ -7,7 +7,7 @@
 html,
 body {
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: Inter, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #ecebeb;
@@ -57,6 +57,7 @@ hr {
     padding: 15px;
     width: 420px;
     gap: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .card-info {
     display: flex;
@@ -96,6 +97,7 @@ button {
     border-radius: 5px;
     color: white;
     border: none;
+    font-family: Inter, sans-serif;
 }
 
 #suggestions {
@@ -129,6 +131,9 @@ button {
     width: 25px;
     height: 25px;
     margin-top: 7px;
+}
+.pagination-num.active {
+background-color: #333;
 }
 
 footer {

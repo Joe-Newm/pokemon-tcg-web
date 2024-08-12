@@ -60,11 +60,23 @@ app.post("/submit", async (req, res) => {
       const totalCount = result.data.totalCount; // Use the correct field
       const totalPages = Math.ceil(totalCount / pageSize);
 
+      // Calculate range of pages to display
+      const maxPageButtons = 5; 
+      let startPage = Math.max(1, page - Math.floor(maxPageButtons / 2));
+      let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+
+      // Adjust startPage if there aren't enough pages at the end
+      if (endPage - startPage + 1 < maxPageButtons) {
+        startPage = Math.max(1, endPage - maxPageButtons + 1);
+      }
+
       // Pass pagination info to the frontend
       res.render("index.ejs", {
         cards,
         page,
         totalPages,
+        startPage,
+        endPage,
         pokemonName,
         totalCount,
       });
