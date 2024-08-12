@@ -18,12 +18,28 @@ nav {
     height: 130px;
     background-color: #3b4cca;
 }
+
+#results {
+    display: flex;
+    gap: 20px;
+    margin: 0 75px;
+    
+}
+
+#money {
+    color: green;
+}
+
+hr {
+    margin: 0 75px;
+    margin-bottom: 20px;
+}
 #logo {
-    width: 250px;
+    width: 225px;
     height: auto;
     position:absolute;
     left: 50%;
-    top: -60px;
+    top: -50px;
     transform: translateX(-50%);
 }
 
@@ -32,7 +48,6 @@ nav {
     flex-wrap: wrap;
     gap: 21px;
     margin: 0 75px;
-    margin-top: 75px;
 }
 
 .card-container {
@@ -64,6 +79,7 @@ h1 {
     display: flex;
     justify-content: center;
     margin-top: 50px;
+    margin-bottom: 75px;
 }
 
 input {
@@ -74,7 +90,7 @@ input {
     padding-left: 10px;
 }
 button {
-    background-color: #3b4cca;
+    background-color: #cc0000;
     height: 40px;
     width: 100px;
     border-radius: 5px;
@@ -101,8 +117,21 @@ button {
     background-color: #f0f0f0;
 }
 
-/* #pagination {
+.pagination-form {
+    margin-bottom: 25px;
+    margin-top: 25px;
     display: flex;
     justify-content: center;
     gap: 20px;
-} */
+} 
+
+.pagination-num {
+    width: 25px;
+    height: 25px;
+    margin-top: 7px;
+}
+
+footer {
+    height: 50px;
+    background-color: #333;
+}

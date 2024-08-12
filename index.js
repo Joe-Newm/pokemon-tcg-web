@@ -66,6 +66,7 @@ app.post("/submit", async (req, res) => {
         page,
         totalPages,
         pokemonName,
+        totalCount,
       });
     }
   } catch (error) {

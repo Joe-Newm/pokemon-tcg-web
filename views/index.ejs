@@ -7,11 +7,12 @@
   </form>
 </div>
 
-<p>Page: <%= locals.page %></p>
-<p>Total Pages: <%= locals.totalPages %></p>
-<p>Cards Length: <%= locals.cards ? cards.length : 0 %></p>
-
 <% if (locals.cards && cards.length > 0) { %> <!-- Check if cards exist and not empty -->
+  <div id="results">
+  <p><b>Page: </b><%= locals.page %>/<%=locals.totalPages%></p>
+  <p><b>Results: </b><%= locals.totalCount%></p>
+  </div>
+  <hr>
 
     <div class="main-card-container">
       <% cards.forEach(card => { %>
@@ -25,7 +26,7 @@
           <!-- <p>Type: <%= card.type %></p> -->
           <p><b>Set:</b> <%= card.set %></p>
           <p><b>Artist:</b> <%= card.artist %></p>
-          <p><b>AVG Price: </b>$<%= card.cardmarketPrice %></p>
+          <p><b>AVG Price: </b><b id="money">$<%= card.cardmarketPrice %></b></p>
         </div>
         </div>
       <% }) %>
@@ -41,7 +42,7 @@
     <% } %>
   
     <% for (let i = 1; i <= totalPages; i++) { %>
-      <button type="submit" name="page" value="<%= i %>" class="pagination-button <%= i === page ? 'active' : '' %>"><%= i %></button>
+      <button type="submit" name="page" value="<%= i %>" class="pagination-num <%= i === page ? 'active' : '' %>"><%= i %></button>
     <% } %>
   
     <% if (page < totalPages) { %>
