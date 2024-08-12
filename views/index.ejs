@@ -34,7 +34,9 @@
   </div>
 
   <form action="/submit" method="post" class="pagination-form">
-    <input type="hidden" name="pokemonName" value="<%= pokemonName %>">
+    <% if (typeof pokemonName !== 'undefined') { %>
+      <input type="hidden" name="pokemonName" value="<%= pokemonName %>">
+    <% } %>
     
     <% if (page > 1) { %>
       <button type="submit" name="page" value="<%= page - 1 %>" class="pagination-button">Previous</button>

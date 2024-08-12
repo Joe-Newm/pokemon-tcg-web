@@ -15,7 +15,67 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
-  res.render("index.ejs", { images: [] });
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = 20; // Number of cards per page
+  let cards = [];
+  let totalPages = page; // Default to current page
+
+  try {
+    // Fetch random cards from the API
+    const result = await axios.get(
+      `${API_URL}?page=${page}&pageSize=${pageSize}`, // Use page and pageSize for random results
+      {
+        headers: {
+          "X-Api-Key": apiKey,
+        },
+      },
+    );
+
+    const pokedata = result.data.data;
+
+    cards = pokedata.map((card) => {
+      const cardmarketPrices = card.cardmarket?.prices || {};
+
+      return {
+        image: card.images.small,
+        name: card.name,
+        number: card.number,
+        rarity: card.rarity,
+        hp: card.hp,
+        set: card.set.name,
+        artist: card.artist,
+        cardmarketPrice: cardmarketPrices.averageSellPrice || "N/A",
+      };
+    });
+
+    // Calculate total pages based on totalCount
+    const totalCount = result.data.totalCount;
+    const totalPages = Math.ceil(totalCount / pageSize);
+
+    // Calculate range of pages to display
+    const maxPageButtons = 5;
+    let startPage = Math.max(1, page - Math.floor(maxPageButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+
+    // Adjust startPage if there aren't enough pages at the end
+    if (endPage - startPage + 1 < maxPageButtons) {
+      startPage = Math.max(1, endPage - maxPageButtons + 1);
+    }
+
+    // Render the page with random cards and pagination
+    res.render("index.ejs", {
+      cards,
+      page,
+      totalPages,
+      startPage,
+      endPage,
+      pokemonName: '', // No specific Pokémon name on the homepage
+      totalCount,
+    });
+  } catch (error) {
+    console.error("Error fetching random cards from API:", error.message);
+    res.status(500).send("Something went wrong!");
+  }
 });
 
 app.post("/submit", async (req, res) => {
@@ -29,9 +89,13 @@ app.post("/submit", async (req, res) => {
   console.log("Requested Page:", page);
 
   try {
-    if (pokemonName) {
+    // Modify the API URL based on whether pokemonName is provided
+    const apiUrl = pokemonName
+      ? `${API_URL}?q=name:${pokemonName}*&page=${page}&pageSize=${pageSize}`
+      : `${API_URL}?page=${page}&pageSize=${pageSize}`;
+      
       const result = await axios.get(
-        `${API_URL}?q=name:${pokemonName}*&page=${page}&pageSize=${pageSize}`,
+        apiUrl,
         {
           headers: {
             "X-Api-Key": apiKey,
@@ -80,7 +144,7 @@ app.post("/submit", async (req, res) => {
         pokemonName,
         totalCount,
       });
-    }
+    
   } catch (error) {
     console.error("Error fetching data from API:", error.message);
     res.status(500).send("Something went wrong!");
