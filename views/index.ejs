@@ -7,8 +7,12 @@
   </form>
 </div>
 
-<% if (locals.cards) { %>
-  
+<p>Page: <%= locals.page %></p>
+<p>Total Pages: <%= locals.totalPages %></p>
+<p>Cards Length: <%= locals.cards ? cards.length : 0 %></p>
+
+<% if (locals.cards && cards.length > 0) { %> <!-- Check if cards exist and not empty -->
+
     <div class="main-card-container">
       <% cards.forEach(card => { %>
         <div class="card-container">
@@ -27,7 +31,27 @@
       <% }) %>
     </div>
   </div>
+
+  <form action="/submit" method="post" class="pagination-form">
+    <!-- Hidden field to preserve pokemonName -->
+    <input type="hidden" name="pokemonName" value="<%= pokemonName %>">
+    
+    <% if (page > 1) { %>
+      <button type="submit" name="page" value="<%= page - 1 %>" class="pagination-button">Previous</button>
+    <% } %>
+  
+    <% for (let i = 1; i <= totalPages; i++) { %>
+      <button type="submit" name="page" value="<%= i %>" class="pagination-button <%= i === page ? 'active' : '' %>"><%= i %></button>
+    <% } %>
+  
+    <% if (page < totalPages) { %>
+      <button type="submit" name="page" value="<%= page + 1 %>" class="pagination-button">Next</button>
+    <% } %>
+  </form>
 <% } %>
+
+
+
 <%- include("partials/footer.ejs") %>
 
 <script>

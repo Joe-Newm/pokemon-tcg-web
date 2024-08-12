@@ -15,14 +15,17 @@ body {
 
 nav {
     display: flex;
-    height: 80px;
+    height: 130px;
     background-color: #3b4cca;
 }
 #logo {
-    width: 150px;
+    width: 250px;
     height: auto;
+    position:absolute;
+    left: 50%;
+    top: -60px;
+    transform: translateX(-50%);
 }
-
 
 .main-card-container {
     display: flex;
@@ -46,9 +49,9 @@ nav {
 }
 
 .card-container img {
-    max-width: 50%; 
-    height: auto; 
-    display: block; 
+    max-width: 50%;
+    height: auto;
+    display: block;
 }
 
 h1 {
@@ -60,7 +63,7 @@ h1 {
 #search {
     display: flex;
     justify-content: center;
-
+    margin-top: 50px;
 }
 
 input {
@@ -75,26 +78,31 @@ button {
     height: 40px;
     width: 100px;
     border-radius: 5px;
-    color:white;
+    color: white;
     border: none;
 }
-
 
 #suggestions {
     position: absolute;
     background-color: white;
-    
+
     max-height: 200px;
     overflow-y: auto;
     width: 400px;
     z-index: 1000;
-  }
-  
-  .suggestion-item {
+}
+
+.suggestion-item {
     padding: 8px;
     cursor: pointer;
-  }
-  
-  .suggestion-item:hover {
+}
+
+.suggestion-item:hover {
     background-color: #f0f0f0;
-  }
+}
+
+/* #pagination {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+} */
