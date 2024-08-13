@@ -1,0 +1,30 @@
+.card-details {
+    display: flex;
+    gap: 50px;
+}
+.card-large {
+    width: 400px;
+    height: auto;
+}
+.details-container {
+    background-color: white;
+    width: 100%;
+    padding: 25px;
+    border-radius: 20px;
+}
+.name-flavor-section {
+    margin-bottom: 25px;
+}
+.name-flavor-section h1 {
+    font-size: 2em;
+}
+
+.information {
+    display: flex;
+    gap: 10px;
+}
+
+hr.up {
+    height: 100%;
+    border: 2px solid #3b4cca;
+}

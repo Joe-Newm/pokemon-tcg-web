@@ -89,6 +89,7 @@ app.get("/card-info/:id", async (req, res) => {
       },
     });
     const card = result.data.data;
+    console.log(result.data)
     res.render("card-info.ejs", {card});
   } catch (error) {
     console.error("Error fetching card data:", error.message);

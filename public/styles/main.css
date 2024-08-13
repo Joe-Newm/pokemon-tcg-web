@@ -98,11 +98,6 @@ hr {
     display: block;
 }
 
-h1 {
-    
-    margin-bottom: 25px;
-}
-
 #search {
     display: flex;
     justify-content: center;
@@ -162,14 +157,6 @@ button {
 background-color: #333;
 }
 
-.card-details {
-    display: flex;
-    gap: 50px;
-}
-.card-large {
-    width: 400px;
-    height: auto;
-}
 footer {
     height: 50px;
     background-color: #333;

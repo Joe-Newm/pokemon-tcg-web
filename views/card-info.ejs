@@ -4,14 +4,28 @@
     <div>
         <img src="<%= card.images.large %>" class="card-large"alt="<%= card.name %>">
     </div>
-    <div>
-        <h1><%= card.name %></h1>
-        <p><b>Number:</b> <%= card.number %></p>
-        <p><b>Rarity:</b> <%= card.rarity %></p>
-        <p><b>HP:</b> <%= card.hp %></p>
-        <p><b>Set:</b> <%= card.set.name %></p>
-        <p><b>Artist:</b> <%= card.artist %></p>
-        <p><b>Price:</b> $<%= card.cardmarket?.prices?.averageSellPrice || "N/A" %></p>
+    <div class="details-container">
+        <div>
+            <section  class="name-flavor-section">
+                <h1><%= card.name %></h1>
+                <p><%=card.flavorText%></p>
+            </section>
+            <hr>
+            <section class="information">
+                <div>
+                <hr class="up">
+                </div>
+                <div>
+                <h1>Card Information</h1>
+                <p><b>Number:</b> <%= card.number %></p>
+                <p><b>Rarity:</b> <%= card.rarity %></p>
+                <p><b>HP:</b> <%= card.hp %></p>
+                <p><b>Set:</b> <%= card.set.name %></p>
+                <p><b>Artist:</b> <%= card.artist %></p>
+                <p><b>Price:</b> $<%= card.cardmarket?.prices?.averageSellPrice || "N/A" %></p>
+                </div>
+            </section>
+        </div>
     </div>
   </div>
 
