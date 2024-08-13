@@ -38,6 +38,7 @@ app.get("/", async (req, res) => {
 
       return {
         image: card.images.small,
+        id: card.id,
         name: card.name,
         number: card.number,
         rarity: card.rarity,
@@ -78,6 +79,23 @@ app.get("/", async (req, res) => {
   }
 });
 
+app.get("/card-info/:id", async (req, res) => {
+  const cardId = req.params.id;
+
+  try {
+    const result = await axios.get(`${API_URL}/${cardId}`, {
+      headers: {
+        "X-Api-Key": apiKey,
+      },
+    });
+    const card = result.data.data;
+    res.render("card-info.ejs", {card});
+  } catch (error) {
+    console.error("Error fetching card data:", error.message);
+    res.status(500).send("Something went wrong!")
+  }
+});
+
 app.post("/submit", async (req, res) => {
   const pokemonName = req.body.pokemonName;
   const page = parseInt(req.body.page) || 1;
@@ -109,6 +127,7 @@ app.post("/submit", async (req, res) => {
         const cardmarketPrices = card.cardmarket?.prices || {};
 
         return {
+          id: card.id,
           image: card.images.small,
           name: card.name,
           number: card.number,

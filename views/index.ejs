@@ -16,10 +16,10 @@
 
   <div class="main-card-container">
     <% cards.forEach(card => { %>
-      <a class="card-text" href="/card-info">
+      <a class="card-text" href="/card-info/<%= card.id %>">
         <div class="card-container">
         <img src= "<%= card.image %>">
-        <div class="card-info">
+        <div class="card-information">
           <p><b>Name:</b> <%= card.name %></p>
           <p><b>Number: </b> <%= card.number %> </p>
           <p><b>Rarity:</b> <%= card.rarity %></p>
