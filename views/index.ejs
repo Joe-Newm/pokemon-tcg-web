@@ -14,8 +14,9 @@
   </div>
   <hr>
 
-    <div class="main-card-container">
-      <% cards.forEach(card => { %>
+  <div class="main-card-container">
+    <% cards.forEach(card => { %>
+      <a class="card-text" href="/card-info">
         <div class="card-container">
         <img src= "<%= card.image %>">
         <div class="card-info">
@@ -29,6 +30,7 @@
           <p><b>AVG Price: </b><b id="money">$<%= card.cardmarketPrice %></b></p>
         </div>
         </div>
+      </a>
       <% }) %>
     </div>
   </div>

@@ -23,8 +23,17 @@ nav {
     display: flex;
     gap: 20px;
     margin: 0 75px;
-    
 }
+
+/* .trapezoid {
+    border-top: 130px solid #555;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	height: 0;
+	width: 2px;
+    margin: 0 auto;
+    position: relative;
+} */
 
 #money {
     color: green;
@@ -58,7 +67,17 @@ hr {
     width: 420px;
     gap: 20px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
+.card-text {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-text:hover .card-container
+ {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+ }
 .card-info {
     display: flex;
     flex-direction: column;
