@@ -1,14 +1,18 @@
 <%- include("partials/header.ejs") %>
 
 <div class="card-details">
-    <img src="<%= card.images.large %>" alt="<%= card.name %>">
-    <h1><%= card.name %></h1>
-    <p><b>Number:</b> <%= card.number %></p>
-    <p><b>Rarity:</b> <%= card.rarity %></p>
-    <p><b>HP:</b> <%= card.hp %></p>
-    <p><b>Set:</b> <%= card.set.name %></p>
-    <p><b>Artist:</b> <%= card.artist %></p>
-    <p><b>Price:</b> $<%= card.cardmarket?.prices?.averageSellPrice || "N/A" %></p>
+    <div>
+        <img src="<%= card.images.large %>" class="card-large"alt="<%= card.name %>">
+    </div>
+    <div>
+        <h1><%= card.name %></h1>
+        <p><b>Number:</b> <%= card.number %></p>
+        <p><b>Rarity:</b> <%= card.rarity %></p>
+        <p><b>HP:</b> <%= card.hp %></p>
+        <p><b>Set:</b> <%= card.set.name %></p>
+        <p><b>Artist:</b> <%= card.artist %></p>
+        <p><b>Price:</b> $<%= card.cardmarket?.prices?.averageSellPrice || "N/A" %></p>
+    </div>
   </div>
 
 
