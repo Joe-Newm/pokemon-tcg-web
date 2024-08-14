@@ -50,7 +50,7 @@ nav {
 }
 
 hr {
-    
+    margin-top: 10px;  
     margin-bottom: 20px;
 }
 #logo {
@@ -161,4 +161,7 @@ footer {
     height: 50px;
     background-color: #333;
     flex-shrink: 0;
+    margin-top: 75px;
 }
+
+

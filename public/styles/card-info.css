@@ -5,12 +5,15 @@
 .card-large {
     width: 400px;
     height: auto;
+    border-radius: 18px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 .details-container {
     background-color: white;
     width: 100%;
     padding: 25px;
     border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 .name-flavor-section {
     margin-bottom: 25px;
@@ -21,10 +24,26 @@
 
 .information {
     display: flex;
-    gap: 10px;
+    gap: 20px;
+    min-width: 250px;
+    
 }
 
 hr.up {
     height: 100%;
     border: 2px solid #3b4cca;
+}
+
+.all-info {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 25px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin: 0 -25px;
+    margin-bottom: 25px;
+}
+
+.h1-info {
+    font-size: 24px;
 }

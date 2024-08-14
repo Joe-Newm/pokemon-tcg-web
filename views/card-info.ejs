@@ -10,24 +10,81 @@
                 <h1><%= card.name %></h1>
                 <p><%=card.flavorText%></p>
             </section>
-            <hr>
+            
+            <div class="all-info">
             <section class="information">
                 <div>
                 <hr class="up">
                 </div>
                 <div>
                 <h1>Card Information</h1>
+                <p><b>Set:</b> <%= card.set.name %></p>
                 <p><b>Number:</b> <%= card.number %></p>
                 <p><b>Rarity:</b> <%= card.rarity %></p>
-                <p><b>HP:</b> <%= card.hp %></p>
-                <p><b>Set:</b> <%= card.set.name %></p>
                 <p><b>Artist:</b> <%= card.artist %></p>
-                <p><b>Price:</b> $<%= card.cardmarket?.prices?.averageSellPrice || "N/A" %></p>
+                <p><b>Release Date:</b> <%= card.set.releaseDate %></p>
                 </div>
             </section>
+            <section class="information">
+                <div>
+                <hr class="up">
+                </div>
+                <div>
+                <h1>Stats</h1>
+                <p><b>Hp:</b> <%= card.hp %></p>
+                <p><b>Type:</b> <%= card.types %></p>
+                <p><b>Evolves from:</b> <%= card.evolvesFrom || "N/A"%></p>
+                <p><b>Evolves to: </b> <%= card.evolvesTo || "N/A"%></p>
+                <p><b>Weaknesses: </b></p>
+                </div>
+            </section>
+            <section class="information">
+                <div>
+                <hr class="up">
+                </div>
+                <div>
+                    <h1>Abilities</h1>
+                    <% if (card?.abilities && card.abilities.length > 0) { %>
+                        <% card.abilities.forEach(ability => { %>
+                            <p><b>Name:</b> <%= ability.name %></p>
+                            <p><b>Description:</b> <%= ability.text %></p>
+                            <p><b>Type:</b> <%= ability.type %></p>
+                        <% }); %>
+                    <% } else { %>
+                      <p>No abilities available for this card.</p>
+                    <% } %>
+                    
+            </section>
+            </div>
+            
+                    <h1 class="h1-info">Abilities</h1>
+                    <% if (card?.abilities && card.abilities.length > 0) { %>
+                        <% card.abilities.forEach(ability => { %>
+                            <p><b>Name:</b> <%= ability.name %></p>
+                            <p><b>Description:</b> <%= ability.text %></p>
+                            <p><b>Type:</b> <%= ability.type %></p>
+                        <% }); %>
+                    <% } else { %>
+                      <p>No abilities available for this card.</p>
+                    <% } %>
+                    <hr>
+                    <h1 class="h1-info">Attacks</h1>
+                    <% if (card?.attacks && card.attacks.length > 0) { %>
+                        <% card.attacks.forEach(attack => { %>
+                            <p><b>Name:</b> <%= attack.name %></p>
+                            <p><b>Description:</b> <%= attack.text %></p>
+                            <p><b>Type:</b> <%= attack.type %></p>
+                        <% }); %>
+                    <% } else { %>
+                      <p>No abilities available for this card.</p>
+                    <% } %>
         </div>
     </div>
   </div>
-
+<% console.log(card.abilities) %>
+<% console.log(card.attacks) %> 
+<% console.log(card.weaknesses) %>
+<% console.log(card.resistances) %>
+<% console.log(card.retreatCost) %>
 
 <%- include("partials/footer.ejs") %>
