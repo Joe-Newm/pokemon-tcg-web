@@ -157,11 +157,25 @@ button {
 background-color: #333;
 }
 
+#footer-text {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    align-items: center;
+}
+
+#link {
+    color:aqua;
+}
+
 footer {
-    height: 50px;
+    height: 100px;
     background-color: #333;
     flex-shrink: 0;
     margin-top: 75px;
+    
 }
 
 
