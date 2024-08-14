@@ -35,7 +35,7 @@
                 <p><b>Type:</b> <%= card.types %></p>
                 <p><b>Evolves from:</b> <%= card.evolvesFrom || "N/A"%></p>
                 <p><b>Evolves to: </b> <%= card.evolvesTo || "N/A"%></p>
-                <p><b>Weaknesses: </b></p>
+                <!-- <p><b>Weaknesses: </b></p> -->
                 </div>
             </section>
             <section class="information">
@@ -43,16 +43,13 @@
                 <hr class="up">
                 </div>
                 <div>
-                    <h1>Abilities</h1>
-                    <% if (card?.abilities && card.abilities.length > 0) { %>
-                        <% card.abilities.forEach(ability => { %>
-                            <p><b>Name:</b> <%= ability.name %></p>
-                            <p><b>Description:</b> <%= ability.text %></p>
-                            <p><b>Type:</b> <%= ability.type %></p>
-                        <% }); %>
-                    <% } else { %>
-                      <p>No abilities available for this card.</p>
-                    <% } %>
+                    <h1>Prices</h1>
+                    <p><b>(Market) Normal:</b> <b id="money">$<%= card?.tcgplayer?.prices?.normal?.market || "N/A" %></b>
+                    <p><b>(Market) Holofoil:</b> <b id="money">$<%= card?.tcgplayer?.prices?.holofoil?.market || "N/A"%></b>
+                    <p><b>(Market) Reverse Holofoil:</b> <b id="money">$<%= card?.tcgplayer?.prices?.reverseHolofoil?.market || "N/A"%></b>
+                    <p><b>AVG price:</b> <b id="money"> $<%=card?.cardmarket?.prices?.averageSellPrice || "N/A"%></b></p>
+                </div>
+    
                     
             </section>
             </div>
@@ -71,9 +68,11 @@
                     <h1 class="h1-info">Attacks</h1>
                     <% if (card?.attacks && card.attacks.length > 0) { %>
                         <% card.attacks.forEach(attack => { %>
-                            <p><b>Name:</b> <%= attack.name %></p>
-                            <p><b>Description:</b> <%= attack.text %></p>
-                            <p><b>Type:</b> <%= attack.type %></p>
+                            <div class="attacks">
+                                <h3> <%= attack.name %></h3>
+                                <p><b></b> <%= attack.text %></p>
+                                <p><b>Damage:</b> <%= attack.damage %></p>
+                            </div>
                         <% }); %>
                     <% } else { %>
                       <p>No abilities available for this card.</p>
@@ -86,5 +85,7 @@
 <% console.log(card.weaknesses) %>
 <% console.log(card.resistances) %>
 <% console.log(card.retreatCost) %>
+<% console.log(card.tcgplayer.prices) %>
+<% console.log(card.cardmarket.prices) %>
 
 <%- include("partials/footer.ejs") %>
