@@ -71,7 +71,7 @@
                             <div class="attacks">
                                 <h3> <%= attack.name %></h3>
                                 <p><b></b> <%= attack.text %></p>
-                                <p><b>Damage:</b> <%= attack.damage %></p>
+                                <p><b>Damage:</b> <%= attack.damage || "N/A"%></p>
                             </div>
                         <% }); %>
                     <% } else { %>
