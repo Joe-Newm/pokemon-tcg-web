@@ -24,8 +24,7 @@ nav {
     height: 130px;
     margin-bottom: 50px;
     background-color: #3b4cca;
-    position: relative;
-    width: 100%;
+    width: 100vw;
     flex-shrink: 0;
 }
 
@@ -65,7 +64,8 @@ hr {
 .main-card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 21px;
+    justify-content: center;
+    gap: 24px;
 }
 
 .card-container {
@@ -142,10 +142,11 @@ button {
 
 .pagination-form {
     margin-bottom: 25px;
-    margin-top: 25px;
+    margin-top: 75px;
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-shrink: 0;
 } 
 
 .pagination-num {
